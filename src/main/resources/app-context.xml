@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="cn.os.gtmap.service.*"/>
+
+    <!--<bean id="httpClient" class="cn.gtmap.onemap.core.support.http.HttpClientFactoryBean"/>-->
+
+    <!--<bean id="httpInvokerRequestExecutor"-->
+          <!--class="org.springframework.remoting.httpinvoker.HttpComponentsHttpInvokerRequestExecutor">-->
+        <!--<constructor-arg ref="httpClient"/>-->
+    <!--</bean>-->
+
+    <!--<bean id="geoService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">-->
+        <!--<property name="httpInvokerRequestExecutor" ref="httpInvokerRequestExecutor"/>-->
+        <!--<property name="serviceUrl" value="http://192.168.90.44:8080/omp/geoService"/>-->
+        <!--<property name="serviceInterface" value="cn.gtmap.onemap.service.GeoService"/>-->
+    <!--</bean>-->
+
+</beans>
