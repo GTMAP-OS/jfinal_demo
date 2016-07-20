@@ -1,10 +1,12 @@
 package cn.os.gtmap.core;
 
+import cn.os.gtmap.entity.UserInfo;
 import cn.os.gtmap.support.spring.SpringPlugin;
 import cn.os.gtmap.web.IndexController;
 import com.jfinal.config.*;
 import com.jfinal.core.Const;
 import com.jfinal.kit.PathKit;
+import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.render.FreeMarkerRender;
 import com.jfinal.render.ViewType;
@@ -52,6 +54,11 @@ public class DemoConfig extends JFinalConfig{
         // 配置C3p0数据库连接池插件
         C3p0Plugin c3p0Plugin = new C3p0Plugin(getProperty("db.url").trim(), getProperty("db.username").trim(), getProperty("db.password").trim());
         me.add(c3p0Plugin);
+
+        // 配置ActiveRecord插件
+        ActiveRecordPlugin arp = new ActiveRecordPlugin(c3p0Plugin);
+        me.add(arp);
+        arp.addMapping("user_info", UserInfo.class);	// 映射UserInfo 表到 UserInfo模型
 
 
     }

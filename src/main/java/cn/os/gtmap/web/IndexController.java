@@ -1,5 +1,6 @@
 package cn.os.gtmap.web;
 
+import cn.os.gtmap.entity.UserInfo;
 import com.jfinal.core.Controller;
 
 /**
@@ -9,7 +10,11 @@ import com.jfinal.core.Controller;
 public class IndexController extends Controller {
 
     public void index() {
-        renderText("Hello Maven Jfinal");
+        render("login.ftl");
+    }
+
+    public void login(){
+//        UserInfo.dao.find("select * from user_info where loginname= ? and passwd=?",getP);
     }
 
 }
