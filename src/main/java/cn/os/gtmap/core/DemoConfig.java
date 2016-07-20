@@ -5,6 +5,7 @@ import cn.os.gtmap.web.IndexController;
 import com.jfinal.config.*;
 import com.jfinal.core.Const;
 import com.jfinal.kit.PathKit;
+import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.render.FreeMarkerRender;
 import com.jfinal.render.ViewType;
 
@@ -27,6 +28,7 @@ public class DemoConfig extends JFinalConfig{
         loadPropertyFile("conf/application.properties");
         me.setViewType(ViewType.FREE_MARKER);
         me.setBaseViewPath("/views");
+        me.setDevMode(getPropertyToBoolean("dev.mode",false));
     }
 
     /**
@@ -35,7 +37,7 @@ public class DemoConfig extends JFinalConfig{
      */
     @Override
     public void configRoute(Routes me) {
-        me.add("/", IndexController.class,"/WEB-INF/views");
+        me.add("/", IndexController.class);
     }
 
     /**
@@ -46,6 +48,12 @@ public class DemoConfig extends JFinalConfig{
     public void configPlugin(Plugins me) {
         //添加spring插件 非必要
         me.add(new SpringPlugin(PathKit.getRootClassPath()+"\\app-context.xml"));
+
+        // 配置C3p0数据库连接池插件
+        C3p0Plugin c3p0Plugin = new C3p0Plugin(getProperty("db.url").trim(), getProperty("db.username").trim(), getProperty("db.password").trim());
+        me.add(c3p0Plugin);
+
+
     }
 
     /***
