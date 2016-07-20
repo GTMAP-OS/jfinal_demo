@@ -1,7 +1,10 @@
 package cn.os.gtmap.core;
 
+import cn.os.gtmap.support.spring.SpringPlugin;
+import cn.os.gtmap.web.IndexController;
 import com.jfinal.config.*;
 import com.jfinal.core.Const;
+import com.jfinal.kit.PathKit;
 import com.jfinal.render.FreeMarkerRender;
 import com.jfinal.render.ViewType;
 
@@ -32,8 +35,7 @@ public class DemoConfig extends JFinalConfig{
      */
     @Override
     public void configRoute(Routes me) {
-
-
+        me.add("/", IndexController.class,"/WEB-INF/views");
     }
 
     /**
@@ -42,7 +44,8 @@ public class DemoConfig extends JFinalConfig{
      */
     @Override
     public void configPlugin(Plugins me) {
-
+        //添加spring插件 非必要
+        me.add(new SpringPlugin(PathKit.getRootClassPath()+"\\app-context.xml"));
     }
 
     /***
