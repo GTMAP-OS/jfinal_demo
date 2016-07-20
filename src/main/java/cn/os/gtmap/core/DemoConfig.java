@@ -29,7 +29,7 @@ public class DemoConfig extends JFinalConfig{
     public void configConstant(Constants me) {
         loadPropertyFile("conf/application.properties");
         me.setViewType(ViewType.FREE_MARKER);
-        me.setBaseViewPath("/views");
+        me.setBaseViewPath("/WEB-INF/views");
         me.setDevMode(getPropertyToBoolean("dev.mode",false));
     }
 
@@ -57,6 +57,7 @@ public class DemoConfig extends JFinalConfig{
 
         // 配置ActiveRecord插件
         ActiveRecordPlugin arp = new ActiveRecordPlugin(c3p0Plugin);
+        arp.setShowSql(getPropertyToBoolean("dev.mode",false));
         me.add(arp);
         arp.addMapping("user_info", UserInfo.class);	// 映射UserInfo 表到 UserInfo模型
 
